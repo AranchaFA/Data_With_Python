@@ -26,14 +26,7 @@ axis = plt.axes() # 'Empty', same as above
 
 # ASSIGN VARIABLE-FUNCTION TO AXIS created above
 # LINE PLOT
-'''
-    Representing 3 functions at a time (they will have same visual features):
-    y1(x) = 2x
-    y2(x) = 4x
-    y3(2x) = 16x
-'''
-axis.plot(x, 2*x, x, 4*x, 2*x, 16*x, linewidth=1.2, ls='--', label='f(x)')
-axis.plot(x, cos_x, linewidth=1.2, color="yellow", label='cos(x)')
+axis.plot(x, cos_x, linewidth=1.2, linestyle='--', color="yellow", label='cos(x)')
 axis.plot(x, tan_x, color="pink", label='tan(x)')
 # SCATTER PLOT
 axis.scatter(x2, sin_x2, marker='^', color="green", label='sin(x)')
@@ -41,7 +34,7 @@ axis.scatter(x2, sin_x2, marker='^', color="green", label='sin(x)')
 serie = pd.Series(np.random.random(20)*20)
 data_frame = pd.DataFrame(np.random.random(50)*20)
 # HISTOGRAM
-data_frame.plot(kind='hist', bins=20, color="orange", label='Hist') # Label isn't changed :( ?¿
+data_frame.plot(kind='hist', bins=20, color="orange", label='Hist') # Label isn't changed bc we aren't using figure&axis
 '''
 # BAR PLOT
 plt.figure() # To show bar plot in a new figure, remove if we want hist+bar in the same graph
