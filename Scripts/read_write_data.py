@@ -2,6 +2,26 @@ import numpy as np
 import pandas as pd
 import openpyxl
 import xlsxwriter
+import pyodbc
+
+""" INSTALL
+General use:
+- numpy
+- pandas
+Excel:
+- xlrd
+- openpyxl
+- xslxwriter
+SQL (pending block!)
+- pyodbc: tried, but connection didn't work!
+- mysqldb: not suported by Python3 :(
+"""
+
+""" REGIONS
+- CSV: line ~26
+- Excel: line ~107
+- SQL: line ~197
+"""
 
 #region CSV FILES
 # READ FROM CSV
@@ -95,12 +115,13 @@ print(pd.read_excel(file_xlsx, sheet_name='Sheet2')) # Shapely
 data_frame_excel1 = pd.DataFrame(pd.read_excel(file_xlsx, sheet_name='Sheet2'))
 
 # WRITE TO EXCEL
-data_frame_excel2 = pd.DataFrame({'C1':['*1','*2'],
-                                  'C2':['+1','+2'],
-                                  'C3':['-1','-2']})
+data_frame_excel2 = pd.DataFrame({'C1': ['*1', '*2'],
+                                  'C2': ['+1', '+2'],
+                                  'C3': ['-1', '-2']})
 
 # Creating new file / Overwritting existing one
 data_frame_excel2.to_excel('../files/newFile.xlsx', sheet_name='Sheet3', index=False)
+
 
 # Adding to existing file / Creating new one if file_path doesn't exist)
 def write_df_to_excel(file_path, data_frame, sheet_name='Sheet1', start_row=None,
@@ -166,10 +187,25 @@ def write_df_to_excel(file_path, data_frame, sheet_name='Sheet1', start_row=None
 
 
 # TESTING write_df_to_excel()
-# New file
+# New file / Overwrite existing
 write_df_to_excel('../files/datatest.xlsx', data_frame_excel2, sheet_name='MyTestSheet', header=True)
 # New sheet in existing file
 write_df_to_excel('../files/datatest.xlsx', data_frame_excel2, sheet_name='MyTestSheet2', header=True)
 #endregion
 
 
+#region SQL (still not implemented!)
+# READ FROM SQL SERVER
+print(pyodbc.drivers()) # Available drivers
+'''
+connection = pyodbc.connect('Driver={MySQL ODBC 8.0 Unicode Driver};'
+                      'Server=locahost;'
+                      'Database=MySQL;'
+                      'UID=root;'
+                      'PW=system;')
+cursor = connection.cursor()
+'''
+# WRITE IN SQL SERVER
+
+
+#endregion
