@@ -6,7 +6,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
 
-# WE WILL WORK WITH SAMPLE ScikitLearn DATASET:
+# In this sample we will program a model to perform a LINEAR REGRESSION (supervised)
+# WE WILL WORK WITH SAMPLE ScikitLearn DATASET,
 # Dataset provides information about house prices in Boston and other features of this houses
 
 #region LOAD DATA
@@ -44,8 +45,8 @@ df_boston.plot(kind='scatter', x='RM', y='PRICE', marker='.', color='orange')
 plt.show()
 #endregion
 
-#region LINEAR REGRESSION (univariate)
-print('\n\n--- UNIVARIATE LINEAR REGRESSION MODEL ---')
+#region LINEAR REGRESSION (one parameter)
+print('\n\n--- ONE PARAMETER LINEAR REGRESSION MODEL ---')
 # DATA we will work with
 X = df_boston[['RM']] # X must be 2D (we could use several variables)
 Y = df_boston['PRICE'] # Y is 1D
@@ -107,8 +108,8 @@ plt.show()
 
 #endregion
 
-#region LINEAR REGRESSION (multivariate)
-print('\n\n--- MULTIVARIATE LINEAR REGRESSION MODEL ---')
+#region LINEAR REGRESSION (two parameters)
+print('\n\n--- TWO PARAMETERS LINEAR REGRESSION MODEL ---')
 # DATA we will work with ( RM&LSTAT - PRICE this time )
 X2 = df_boston[['RM', 'LSTAT']] # X must be 2D (we could use several variables)
 Y2 = df_boston['PRICE'] # Y is 1D
@@ -147,7 +148,7 @@ print('\n- R2 -')
 r2_2 = linear_model2.score(X2_test, Y2_test) # or r2_score(Y2_test, Y2_test_predicted)
 print(r2_2)
 """
-# IT DOESN'T WORK!
+# IT DOESN'T WORK! To test how each parameter individually affects to Y estimated value
 print('R2 partial RM')
 r2_2RM = linear_model2.score(X2_test['RM'],Y2_test)
 print(round(r2_2RM,2))
@@ -156,7 +157,7 @@ r2_2LSTAT = linear_model2.score(X2_test['LSTAT'],Y2_test)
 print(round(r2_2LSTAT,2))
 """
 
-# Graphic representation for multivariate model would need more than 2D graph (3D for 2 variables)
+# Graphic representation for multiparameter model would need more than 2D graph (3D for 2 variables)
 
 # Plotting residuals to check if some pattern exists between each variable and y_error
 # If so, it means model could have bias and must be improved
@@ -170,13 +171,13 @@ plt.show()
 
 #endregion
 
-#region COMPARING BOTH UNI/MULTIVARIATE MODELS
-print('\n\n--- COMPARING BOTH UNI/MULTIVARIATE MODELS ---')
+#region COMPARING BOTH UNI/MULTIPARAMETER MODELS
+print('\n\n--- COMPARING BOTH UNI/MULTIPARAMETER MODELS ---')
 print('MSE uni/multi')
 print(round(mse,2))
 print(round(mse2,2))
 print('MSE(uni)-MSE(multi)')
-print(round(mse - mse2,2)) # -21.14 -> 21% improvement with multivariate model
+print(round(mse - mse2,2)) # -21.14 -> 21% improvement with multiparameter model
 print('R2 uni/multi')
 print(round(r2,2))
 print(round(r2_2,2))
