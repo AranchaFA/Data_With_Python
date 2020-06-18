@@ -200,3 +200,15 @@ print(knn_kfold_scores_tuned.mean())
 #endregion test results
 
 #endregion k-fold cross validation
+
+#region PREDICT
+x_new = np.array([[2.50, 1.20], [3.60, 1.20], [2.50, 1.60]]) # Input (X) must be 2D (n, 2), output (Y) will be 1D
+print('New data')
+print(x_new)
+print('Prediction with holdout model + Confusion matrix')
+print(knn_holdout.predict(x_new))
+print(knn_holdout.predict_proba(x_new))
+print('Prediction with k-fold model (tuned) + Confusion matrix')
+print(knn_kfold_tuned.predict(x_new))
+print(knn_kfold_tuned.predict_proba(x_new))
+#endregion
